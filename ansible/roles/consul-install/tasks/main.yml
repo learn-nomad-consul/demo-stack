@@ -1,0 +1,8 @@
+---
+
+- name: install consul
+  import_tasks: consul_install.yml
+
+- name: setup consul agents
+  import_tasks: consul_agents.yml
+

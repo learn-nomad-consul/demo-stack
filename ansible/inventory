@@ -1,0 +1,5 @@
+ctrlplane ansible_host=172.16.1.9 ansible_ssh_private_key_file='/vagrant/.vagrant/machines/ctrlplane/virtualbox/private_key'
+dp-proxy ansible_host=172.16.1.10 ansible_ssh_private_key_file='/vagrant/.vagrant/machines/dp-proxy/virtualbox/private_key'
+dp ansible_host=172.16.1.11 ansible_ssh_private_key_file='/vagrant/.vagrant/machines/dp/virtualbox/private_key'
+monitoring ansible_host=172.16.2.10 ansible_ssh_private_key_file='/vagrant/.vagrant/machines/monitoring/virtualbox/private_key'
+ci ansible_host=172.16.2.11 ansible_ssh_private_key_file='/vagrant/.vagrant/machines/ci/virtualbox/private_key'

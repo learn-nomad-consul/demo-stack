@@ -1,0 +1,8 @@
+---
+
+- name: install nomad
+  import_tasks: nomad_install.yml
+
+- name: setup consul agents
+  import_tasks: nomad_agents.yml
+

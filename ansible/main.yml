@@ -1,0 +1,37 @@
+---
+
+- name: install docker on clients
+  hosts:
+    all 
+  become: yes
+  roles:
+    - docker-install
+
+- name: install consul
+  hosts:
+    all
+  order: sorted
+  become: yes
+  roles:
+    - consul-install
+
+- name: nomad install
+  hosts:
+    all
+  order: sorted
+  become: yes
+  roles:
+    - nomad-install
+
+# - name: start containers 
+#   hosts:
+#     workers
+#   become: yes
+#   roles:
+#     - containers
+
+# - name: setup monitor 
+#   hosts: monitoring 
+#   become: yes
+#   roles:
+#     - monitoring

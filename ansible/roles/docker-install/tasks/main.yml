@@ -1,0 +1,7 @@
+---
+
+- name: install docker
+  import_tasks: docker.yml
+
+- name: install docker for ansible
+  import_tasks: docker-ansible.yml

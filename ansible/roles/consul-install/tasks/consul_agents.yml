@@ -1,0 +1,56 @@
+---
+
+- name: generate consul encryption key
+  shell: consul keygen
+  register: consul_keygen
+  when: inventory_hostname == 'ctrlplane'
+
+- name: add consul_key to master facts so other hosts can use it
+  set_fact: consul_key={{consul_keygen.stdout}}
+  when: inventory_hostname == 'ctrlplane'
+
+- name: consul service definition 
+  become: yes
+  copy:
+    src: ../templates/consul.service
+    dest: /etc/systemd/system/consul.service
+    mode: '0640'
+    owner: vagrant
+    
+- name: ensure /etc/consul.d/ directory exists
+  become: yes
+  file:
+    path: /etc/consul.d/
+    state: directory
+    owner: vagrant
+
+- name: set consul server config file
+  template:
+    src: ../templates/consul_server.j2
+    dest: /etc/consul.d/consul.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname == 'ctrlplane'
+
+- name: set consul ci agent config file
+  template:
+    src: ../templates/consul_client.j2
+    dest: /etc/consul.d/consul.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname == 'ci'
+
+- name: set consul agent config file
+  template:
+    src: ../templates/consul_client.j2
+    dest: /etc/consul.d/consul.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname != 'ctrlplane' and inventory_hostname != 'ci' 
+
+- name: start consul service
+  systemd:
+    state: restarted
+    enabled: yes
+    name: consul
+    daemon_reload: yes

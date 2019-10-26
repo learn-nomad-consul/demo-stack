@@ -1,0 +1,20 @@
+---
+
+- name: install unzip 
+  become: yes
+  package:
+    name: unzip
+    state: present
+
+- name: get consul archive
+  become: no
+  get_url:
+    url: https://releases.hashicorp.com/consul/1.6.1/consul_1.6.1_linux_amd64.zip
+    dest: ~/consul.zip
+
+- name: extract consul
+  become: yes
+  shell: unzip ./consul.zip -d /usr/local/bin/ && chmod +x /usr/local/bin/consul && rm ./*.zip
+  args:
+    creates: /usr/local/bin/consul
+

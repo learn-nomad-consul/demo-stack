@@ -1,0 +1,11 @@
+data_dir = "/etc/nomad.d"
+bind_addr = "{{ hostvars[inventory_hostname].ansible_host }}"
+
+server {
+  enabled          = true
+  bootstrap_expect = 1
+}
+
+addresses {
+  http = "0.0.0.0"
+}

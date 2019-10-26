@@ -1,0 +1,47 @@
+---
+
+- name: nomad service definition 
+  become: yes
+  copy:
+    src: ../templates/nomad.service
+    dest: /etc/systemd/system/nomad.service
+    mode: '0640'
+    owner: vagrant
+    
+- name: ensure /etc/nomad.d/ directory exists
+  become: yes
+  file:
+    path: /etc/nomad.d/
+    state: directory
+    owner: vagrant
+
+- name: set nomad server config file
+  template:
+    src: ../templates/nomad_server.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname == 'ctrlplane'
+
+- name: set nomad ci agent config file
+  template:
+    src: ../templates/nomad_client.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname == 'ci'
+
+- name: set nomad agent config file
+  template:
+    src: ../templates/nomad_client.j2
+    dest: /etc/nomad.d/nomad.hcl
+    mode: '0640'
+    owner: vagrant
+  when: inventory_hostname != 'ctrlplane' and inventory_hostname != 'ci' 
+
+- name: start nomad service
+  systemd:
+    state: restarted
+    enabled: yes
+    name: nomad
+    daemon_reload: yes
