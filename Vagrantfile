@@ -9,7 +9,6 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--audio", "none"]
   end
 
-  # the control-plane
   config.vm.define "ctrlplane" do |c|
     c.vm.hostname = "ctrlplane"
     c.vm.network "private_network", ip: "172.16.1.9"

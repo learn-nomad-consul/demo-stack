@@ -1,5 +1,8 @@
 ---
 
+- name: install cni plugins
+  import_tasks: cni_plugins.yml
+
 - name: install nomad
   import_tasks: nomad_install.yml
 
