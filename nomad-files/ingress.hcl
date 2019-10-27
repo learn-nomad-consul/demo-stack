@@ -12,16 +12,16 @@ job "ingress" {
     }
 
     service {
-      name = "caller"
-      port = "8080"
+      name = "ingress"
+      port = 80
 
       connect {
         sidecar_service {
           proxy {
             upstreams {
-              destination_name = "echo"
-                local_bind_port = 12345
-              }
+              destination_name = "backend"
+              local_bind_port = 12345
+            }
           }
         }
       }
@@ -41,7 +41,7 @@ job "ingress" {
           server {
             listen 80;
             location / {
-              proxy_pass http://127.0.0.1:12345;
+              grpc_pass grpc://127.0.0.1:12345;
             }
           }
         EOH

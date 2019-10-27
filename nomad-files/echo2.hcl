@@ -1,15 +1,15 @@
-job "echo" {
+job "echo2" {
   datacenters = ["dc1"]
   type = "service"
 
-  group "echo" {
+  group "echo2" {
     network {
       mode = "bridge"
     }
 
     service {
-      name = "echo"
-      port = 80
+      name = "echo2"
+      port = 5678
       connect {
         sidecar_service {}
       }
@@ -18,7 +18,8 @@ job "echo" {
     task "server" {
       driver = "docker"
       config {
-        image = "kennethreitz/httpbin"
+        image = "hashicorp/http-echo"
+        args = ["--text", "\"==> echo 2\""]
       }
     }
   }
