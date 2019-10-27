@@ -3,8 +3,6 @@ job "ingress" {
   type = "service"
 
   group "ingress" {
-    driver = "docker"
-
     network {
       mode = "bridge"
       port "http" {
