@@ -49,6 +49,7 @@
   when: inventory_hostname != 'ctrlplane' and inventory_hostname != 'ci' 
 
 - name: start consul service
+  become: yes
   systemd:
     state: restarted
     enabled: yes

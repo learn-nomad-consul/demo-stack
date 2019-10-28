@@ -14,13 +14,13 @@ Vagrant.configure("2") do |config|
     c.vm.network "private_network", ip: "172.16.1.9"
   end
 
-  config.vm.define "dp-proxy" do |c|
-    c.vm.hostname = "dp-proxy"
+  config.vm.define "ingress" do |c|
+    c.vm.hostname = "ingress"
     c.vm.network "private_network", ip: "172.16.1.10"
   end
 
-  config.vm.define "dp" do |c|
-    c.vm.hostname = "dp"
+  config.vm.define "dataplane" do |c|
+    c.vm.hostname = "dataplane"
     c.vm.network "private_network", ip: "172.16.1.11"
   end
 

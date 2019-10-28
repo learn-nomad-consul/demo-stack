@@ -1,5 +1,11 @@
 ---
 
+- name: copy conf files
+  hosts:
+    ci
+  roles:
+    - stack
+
 - name: install docker on clients
   hosts:
     all 
@@ -23,15 +29,3 @@
   roles:
     - nomad-install
 
-# - name: start containers 
-#   hosts:
-#     workers
-#   become: yes
-#   roles:
-#     - containers
-
-# - name: setup monitor 
-#   hosts: monitoring 
-#   become: yes
-#   roles:
-#     - monitoring
