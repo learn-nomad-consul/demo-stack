@@ -22,6 +22,12 @@ job "echo1" {
 
     task "server" {
       driver = "docker"
+
+      resources {
+        cpu    = 100
+        memory = 100
+      }
+
       config {
         image = "hashicorp/http-echo"
         args = ["--text", "\"==> echo 1\""]
