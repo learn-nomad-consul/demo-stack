@@ -30,7 +30,7 @@ job "ingress" {
     task "server" {
       driver = "docker"
       config {
-        image = "nginx"
+        image = "nginx:alpine"
         volumes = [
           "custom/default.conf:/etc/nginx/conf.d/default.conf"
         ]

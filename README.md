@@ -1,6 +1,6 @@
-# Consul lab
+# Nomad & Consul Connect demo stack
 
-The simplest way to get a fully working Consul Cluster with Connet & Envoy on 3 VMs :)
+The simplest way to get a fully working Nomad with Consul Cluster.
 
 ## Requirements
 
@@ -16,6 +16,23 @@ vagrant up
 ```
 
 That's it ! Have a cup of coffee while looking at Vagrant upping the VMs and setting everything for you.
+
+
+## Setup Consul
+copy / paste `consul-files/` content on the CI VM then
+
+(start with the `*-defaults` files
+
+```
+consul config write <each file> 
+```
+
+## Setup Nomad
+copy / paste `nomad-files/` content on the CI VM then
+
+```
+nomad run <each file> 
+```
 
 ## Nota Bene
 
