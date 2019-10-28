@@ -2,6 +2,11 @@ job "echo1" {
   datacenters = ["dc1"]
   type = "service"
 
+  constraint {
+    attribute = "${meta.instance_group}"
+    value     = "dataplane"
+  }
+
   group "echo1" {
     network {
       mode = "bridge"

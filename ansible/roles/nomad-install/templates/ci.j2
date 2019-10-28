@@ -4,4 +4,9 @@ bind_addr = "{{ hostvars[inventory_hostname].ansible_host }}"
 client {
   enabled = true
   network_interface = "enp0s8"
+
+  meta {
+    instance_group = "{{ inventory_hostname }}"
+  }
 }
+
