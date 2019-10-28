@@ -2,6 +2,13 @@ job "statsd" {
   datacenters = ["dc1"]
   type = "system"
 
+# everywhere except on monitoring otherwise prometheus get killed
+  constraint {
+    attribute = "${meta.instance_group}"
+    value     = "monitoring"
+    operator  = "!="
+  }
+
   group "statsd" {
     network {}
 
