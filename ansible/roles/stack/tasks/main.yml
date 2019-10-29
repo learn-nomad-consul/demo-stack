@@ -16,3 +16,11 @@
     mode: '0640'
     owner: vagrant
  
+- name: copy apply script file
+  become: yes
+  copy:
+    src: ../../../../apply.sh
+    dest: /home/vagrant/apply.sh
+    mode: '0740'
+    owner: vagrant
+ 

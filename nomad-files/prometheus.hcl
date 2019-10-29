@@ -27,16 +27,14 @@ job "prometheus" {
           }
         }
 
-        sidecar_task {
+        sidecar_task { # from https://www.nomadproject.io/docs/job-specification/sidecar_task.html#default-envoy-proxy-sidecar, network_mode = host
           driver = "docker"
           config {
             image = "${meta.connect.sidecar_image}"
             network_mode = "host"
             args  = [
-              "-c",
-              "${NOMAD_SECRETS_DIR}/envoy_bootstrap.json",
-              "-l",
-              "${meta.connect.log_level}"
+              "-c", "${NOMAD_SECRETS_DIR}/envoy_bootstrap.json",
+              "-l", "${meta.connect.log_level}"
             ]
           }
         }

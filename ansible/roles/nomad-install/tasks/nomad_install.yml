@@ -12,7 +12,7 @@
     url: https://releases.hashicorp.com/nomad/0.10.0/nomad_0.10.0_linux_amd64.zip
     dest: ~/nomad.zip
 
-- name: extract consul
+- name: extract nomad
   become: yes
   shell: unzip ./nomad.zip -d /usr/local/bin/ && chmod +x /usr/local/bin/nomad && rm ./*.zip
   args:

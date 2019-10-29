@@ -18,20 +18,34 @@ vagrant up
 That's it ! Have a cup of coffee while looking at Vagrant upping the VMs and setting everything for you.
 
 
-## Setup Consul
-copy / paste `consul-files/` content on the CI VM then
-
-(start with the `*-defaults` files
-
+## Setup Nomad & Consul services 
 ```
-consul config write <each file> 
+vagrant ssh ci
+./apply.sh
 ```
 
-## Setup Nomad
-copy / paste `nomad-files/` content on the CI VM then
+### check
+
+__Nomad__ : 
+
+open [http://172.16.2.10:4646](http://172.16.2.10:4646)
+
+__Prometheus__ :
 
 ```
-nomad run <each file> 
+ssh -L localhost:9090:localhost:9090 -i ./.vagrant/machines/monitoring/virtualbox/private_key vagrant@172.16.2.10
+``` 
+
+then  [http://localhost:9090](http://localhost:9090)
+
+__App__ :
+
+```
+curl 172.16.1.10:8080
+"==> echo 1"
+
+curl 172.16.1.10:8080/v2
+"==> echo 2"
 ```
 
 ## Nota Bene
