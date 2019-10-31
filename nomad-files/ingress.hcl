@@ -1,6 +1,5 @@
 job "ingress" {
   datacenters = ["dc1"]
-  type = "service"
 
   constraint {
     attribute = "${meta.instance_group}"
@@ -11,14 +10,13 @@ job "ingress" {
     network {
       mode = "bridge"
       port "http" {
-        static = 8080
-        to = 80
+        static = 9090
+        to = 9090
       }
     }
 
     service {
       name = "ingress"
-      port = 80
 
       connect {
         sidecar_service {
@@ -32,25 +30,25 @@ job "ingress" {
       }
     }
 
-    task "server" {
+    task "ingress" {
       driver = "docker"
+
       config {
-        image = "nginx:alpine"
-        volumes = [
-          "custom/default.conf:/etc/nginx/conf.d/default.conf"
-        ]
+        image = "nicholasjackson/fake-service:v0.7.1"
       }
 
-      template {
-        data = <<EOH
-          server {
-            listen 80;
-            location / {
-              grpc_pass grpc://127.0.0.1:12345;
-            }
-          }
-        EOH
-        destination = "custom/default.conf"
+      env {
+        LISTEN_ADDR = "0.0.0.0:9090"
+        UPSTREAM_URIS = "http://127.0.0.1:12345/"
+        TRACING_ZIPKIN = "http://172.16.2.10:9411"
+        UPSTREAM_CALL = "true"
+        MESSAGE = "Hello World"
+        HTTP_CLIENT_KEEP_ALIVES = "false"
+        NAME = "ingress"
+        TIMING_50_PERCENTILE = "30ms"
+        TIMING_90_PERCENTILE = "60ms"
+        TIMING_99_PERCENTILE = "90ms"
+        TIMING_VARIANCE = 10
       }
     }
   }

@@ -1,6 +1,5 @@
 job "echo2" {
   datacenters = ["dc1"]
-  type = "service"
 
   constraint {
     attribute = "${meta.instance_group}"
@@ -14,13 +13,14 @@ job "echo2" {
 
     service {
       name = "echo2"
-      port = 5678
+      port = "5678"
+
       connect {
         sidecar_service {}
       }
     }
 
-    task "server" {
+    task "echo2" {
       driver = "docker"
       resources {
         cpu    = 100

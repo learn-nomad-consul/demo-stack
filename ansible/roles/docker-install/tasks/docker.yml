@@ -45,3 +45,8 @@
     dest: /etc/docker/daemon.json
     mode: '0400'
 
+- name: create monitoring docker network  
+  docker_network:
+    name: monitoring-net
+    ipam_config:
+      - subnet: 172.18.0.1/24

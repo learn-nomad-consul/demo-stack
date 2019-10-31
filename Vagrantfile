@@ -32,6 +32,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "ci" do |c|
     c.vm.hostname = "ci"
     c.vm.network "private_network", ip: "172.16.2.11"
+    c.vm.synced_folder "./nomad-files/", "/home/vagrant/nomad-files"
+    c.vm.synced_folder "./consul-files/", "/home/vagrant/consul-files"
   end
 
   config.vm.define 'controller' do |machine|

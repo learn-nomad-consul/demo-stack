@@ -12,3 +12,7 @@ ports {
 }
 
 enable_central_service_config = true
+
+{% if inventory_hostname == "monitoring" %}
+  ui = true
+{% endif %}

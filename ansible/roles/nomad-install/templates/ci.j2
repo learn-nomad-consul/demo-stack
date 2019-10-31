@@ -10,3 +10,8 @@ client {
   }
 }
 
+advertise {
+  http  = "{{ hostvars[inventory_hostname].ansible_host }}"
+  rpc  = "{{ hostvars[inventory_hostname].ansible_host }}"
+  serf  = "{{ hostvars[inventory_hostname].ansible_host }}"
+}

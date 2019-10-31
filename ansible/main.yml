@@ -1,10 +1,10 @@
 ---
 
-- name: copy conf files
-  hosts:
-    ci
-  roles:
-    - stack
+# - name: copy conf files
+#   hosts:
+#     ci
+#   roles:
+#     - stack
 
 - name: install docker on clients
   hosts:

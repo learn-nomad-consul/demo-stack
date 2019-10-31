@@ -1,6 +1,5 @@
 job "prometheus" {
   datacenters = ["dc1"]
-  type = "service"
 
   constraint {
     attribute = "${meta.instance_group}"
@@ -9,14 +8,17 @@ job "prometheus" {
 
   group "prometheus" {
     network {
+      mode = bridge
       port "http" {
         static = 9090
+        to = 9090
       }
     }
 
     service {
       name = "prometheus"
       port = 9090
+
       connect {
         sidecar_service {
           proxy {
@@ -26,29 +28,21 @@ job "prometheus" {
             }
           }
         }
-
-        sidecar_task { # from https://www.nomadproject.io/docs/job-specification/sidecar_task.html#default-envoy-proxy-sidecar, network_mode = host
-          driver = "docker"
-          config {
-            image = "${meta.connect.sidecar_image}"
-            network_mode = "host"
-            args  = [
-              "-c", "${NOMAD_SECRETS_DIR}/envoy_bootstrap.json",
-              "-l", "${meta.connect.log_level}"
-            ]
-          }
-        }
       }
     }
 
     task "server" {
       driver = "docker"
 
+      resources {
+        cpu    = 100
+        memory = 100
+      }
+
       config {
         image = "prom/prometheus"
-        network_mode = "host"
         args = [
-          "--web.listen-address", "127.0.0.1:9090",
+          "--web.listen-address", "0.0.0.0:9090", # fixme
           "--config.file", "/etc/prometheus/prometheus.yml"
         ]
         volumes = [

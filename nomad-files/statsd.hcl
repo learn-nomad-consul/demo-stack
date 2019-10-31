@@ -10,11 +10,17 @@ job "statsd" {
   }
 
   group "statsd" {
-    network {}
+    network {
+      mode = "bridge"
+      port "web" {
+        static = 9102
+        to = 9102
+      }
+    }
 
     service {
       name = "statsd"
-      port = 9102
+      port = "9102"
       connect {
         sidecar_service {}
       }
@@ -25,16 +31,17 @@ job "statsd" {
 
       resources {
         cpu    = 50
-        memory = 50
+        memory = 100
       }
 
       config {
         image = "prom/statsd-exporter"
-        network_mode = "host"
+        ipv4_address = "172.18.0.2"
         args = [
-          "--statsd.listen-udp", "172.17.0.1:9125",
+          "--statsd.listen-udp", "172.18.0.2:9125",
           "--statsd.listen-tcp", "",
           "--web.listen-address", "127.0.0.1:9102"]
+        network_mode = "monitoring-net"
       }
     }
   }
