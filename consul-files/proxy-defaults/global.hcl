@@ -2,7 +2,7 @@ kind = "proxy-defaults"
 name = "global"
 
 config {
-  envoy_statsd_url = "udp://172.18.0.2:9125"
+  envoy_statsd_url = "udp://172.17.0.1:9125"
 
   envoy_extra_static_clusters_json = <<EOL
     {

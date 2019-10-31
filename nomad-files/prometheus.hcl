@@ -8,26 +8,9 @@ job "prometheus" {
 
   group "prometheus" {
     network {
-      mode = bridge
+      mode = "host"
       port "http" {
         static = 9090
-        to = 9090
-      }
-    }
-
-    service {
-      name = "prometheus"
-      port = 9090
-
-      connect {
-        sidecar_service {
-          proxy {
-            upstreams {
-              destination_name = "statsd"
-              local_bind_port = 12345
-            }
-          }
-        }
       }
     }
 
@@ -42,9 +25,10 @@ job "prometheus" {
       config {
         image = "prom/prometheus"
         args = [
-          "--web.listen-address", "0.0.0.0:9090", # fixme
+          "--web.listen-address", "127.0.0.1:9090",
           "--config.file", "/etc/prometheus/prometheus.yml"
         ]
+        network_mode = "host"
         volumes = [
           "custom/prometheus.yml:/etc/prometheus/prometheus.yml"
         ]
@@ -62,7 +46,7 @@ scrape_configs:
     scrape_interval: 10s
     scrape_timeout: 5s
     consul_sd_configs:
-      - server: '172.17.0.1:8500'
+      - server: '127.0.0.1:8500'
     relabel_configs:
       - source_labels: [__meta_consul_service]
         target_label: service
@@ -70,7 +54,6 @@ scrape_configs:
         action: keep
       - source_labels: [__address__]
         target_label:  '__address__'
-        replacement:   'localhost:12345'
       - source_labels: [__meta_consul_node]
         target_label:  'node'
       - source_labels: [__meta_consul_address]
