@@ -34,17 +34,17 @@ job "ingress" {
       driver = "docker"
 
       config {
-        image = "nicholasjackson/fake-service:v0.7.1"
+        image = "nicholasjackson/fake-service:v0.7.8"
       }
 
       env {
-        LISTEN_ADDR = "0.0.0.0:9090"
+        NAME = "ingress"
+        LISTEN_ADDR = "0.0.0.0:${NOMAD_PORT_http}"
         UPSTREAM_URIS = "http://127.0.0.1:12345/"
         TRACING_ZIPKIN = "http://172.16.2.10:9411"
         UPSTREAM_CALL = "true"
         MESSAGE = "Hello World"
         HTTP_CLIENT_KEEP_ALIVES = "false"
-        NAME = "ingress"
         TIMING_50_PERCENTILE = "30ms"
         TIMING_90_PERCENTILE = "60ms"
         TIMING_99_PERCENTILE = "90ms"

@@ -1,17 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "${1}"
-
-nomad job stop -purge "${1}"
-
-nomad run "${1}".hcl
-
-# jobs=( statsd jaeger prometheus ingress fake echo1 echo2 )
-
-# for job in "${jobs[@]}"
-# do
-#   echo "${job}"
-#   nomad job stop -purge "${job}"
-#   nomad run "${job}".hcl
-#   # do something on $var
-# done
+if [ $1 == "all" ]
+then
+    echo "applying all jobs"
+    for job in statsd jaeger prometheus ingress echo1 echo2
+    do
+        nomad job stop -purge "$job"
+        nomad run "$job".hcl
+     done
+else
+    echo "applying $1"
+    nomad job stop -purge "$1"
+    nomad run "$1".hcl
+fi

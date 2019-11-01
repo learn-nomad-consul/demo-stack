@@ -23,7 +23,7 @@ job "jaeger" {
       driver = "docker"
 
       config {
-        image = "jaegertracing/all-in-one:1.14"
+        image = "jaegertracing/all-in-one:1.14.0"
       }
 
       resources {
