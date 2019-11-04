@@ -8,7 +8,6 @@ routes = [
         path_prefix = "/v2"
       }
     }
-
     destination {
       service = "echo2"
     }
@@ -19,7 +18,6 @@ routes = [
         path_prefix = "/"
       }
     }
-
     destination {
       service = "echo1"
     }

@@ -12,26 +12,31 @@ Vagrant.configure("2") do |config|
   config.vm.define "ctrlplane" do |c|
     c.vm.hostname = "ctrlplane"
     c.vm.network "private_network", ip: "172.16.1.9"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
   config.vm.define "ingress" do |c|
     c.vm.hostname = "ingress"
     c.vm.network "private_network", ip: "172.16.1.10"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
   config.vm.define "dataplane" do |c|
     c.vm.hostname = "dataplane"
     c.vm.network "private_network", ip: "172.16.1.11"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
   config.vm.define "monitoring" do |c|
     c.vm.hostname = "monitoring"
     c.vm.network "private_network", ip: "172.16.2.10"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
   end
 
   config.vm.define "ci" do |c|
     c.vm.hostname = "ci"
     c.vm.network "private_network", ip: "172.16.2.11"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
     c.vm.synced_folder "./nomad-files/", "/home/vagrant/nomad-files"
     c.vm.synced_folder "./consul-files/", "/home/vagrant/consul-files"
   end

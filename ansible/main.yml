@@ -1,11 +1,5 @@
 ---
 
-# - name: copy conf files
-#   hosts:
-#     ci
-#   roles:
-#     - stack
-
 - name: install docker on clients
   hosts:
     all 
@@ -13,7 +7,7 @@
   roles:
     - docker-install
 
-- name: install consul
+- name: consul install
   hosts:
     all
   order: sorted

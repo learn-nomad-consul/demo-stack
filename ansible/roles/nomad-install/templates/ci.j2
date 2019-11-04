@@ -10,6 +10,10 @@ client {
   }
 }
 
+addresses {
+  http = "127.0.0.1"
+}
+
 advertise {
   http  = "{{ hostvars[inventory_hostname].ansible_host }}"
   rpc  = "{{ hostvars[inventory_hostname].ansible_host }}"

@@ -1,7 +1,5 @@
 # Nomad & Consul Connect demo stack
 
-The simplest way to get a fully working Nomad with Consul Cluster.
-
 ## Requirements
 
 - virtualbox
@@ -17,18 +15,45 @@ vagrant up
 
 That's it ! Have a cup of coffee while looking at Vagrant upping the VMs and setting everything for you.
 
-
 ## Setup Nomad & Consul services 
+
 ```
 vagrant ssh ci
+cd ~/consul-files/
 ./apply.sh
+
+cd ~/nomad-files/
+./apply.sh all
 ```
 
-### check
+### Check
+
+__Consul__ : 
+
+```
+ssh -L localhost:8500:localhost:8500 -i ./.vagrant/machines/monitoring/virtualbox/private_key vagrant@172.16.2.10
+```
+
+open [http://localhost:8500](http://localhost:8500)
+
 
 __Nomad__ : 
 
-open [http://172.16.2.10:4646](http://172.16.2.10:4646)
+```
+ssh -L localhost:4646:localhost:4646 -i ./.vagrant/machines/monitoring/virtualbox/private_key vagrant@172.16.2.10
+```
+
+open [http://localhost:4646](http://localhost:4646)
+
+
+__Jaeger__ :
+
+```
+ssh -L localhost:16686:localhost:16686 -i ./.vagrant/machines/monitoring/virtualbox/private_key vagrant@172.16.2.10
+``` 
+
+then  [http://localhost:16686](http://localhost:16686)
+
 
 __Prometheus__ :
 
@@ -38,13 +63,21 @@ ssh -L localhost:9090:localhost:9090 -i ./.vagrant/machines/monitoring/virtualbo
 
 then  [http://localhost:9090](http://localhost:9090)
 
+__Grafana__ :
+
+```
+ssh -L localhost:3000:localhost:3000 -i ./.vagrant/machines/monitoring/virtualbox/private_key vagrant@172.16.2.10
+``` 
+
+then  [http://localhost:3000](http://localhost:3000)
+
 __App__ :
 
 ```
-curl 172.16.1.10:8080
+curl 172.16.1.10:9090
 "==> echo 1"
 
-curl 172.16.1.10:8080/v2
+curl 172.16.1.10:9090/v2
 "==> echo 2"
 ```
 
