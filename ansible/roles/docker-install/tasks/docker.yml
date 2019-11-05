@@ -47,4 +47,4 @@
 
 - name: install loki plugin 
   become: yes
-  shell: docker plugin install  grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+  shell: docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions

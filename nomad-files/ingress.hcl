@@ -37,6 +37,12 @@ job "ingress" {
 
       config {
         image = "nicholasjackson/fake-service:v0.7.8"
+        logging {
+          type = "fluentd"
+          config {
+            fluentd-address = "172.17.0.1:24224"
+          }
+        }
       }
 
       env {

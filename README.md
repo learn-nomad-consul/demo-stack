@@ -14,7 +14,7 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 - Nomad (orchestration)
 - Jaeger (distributed tracing)
 - Prometheus (monitoring)
-- Loki (logs)
+- Fluent-bit & Loki (logs)
 - Grafana (visualization)
 
 
