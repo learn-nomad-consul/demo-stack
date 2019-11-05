@@ -28,7 +28,11 @@ job "chaos" {
       }
 
       config {
-        image = "err0r500/chaos-container"
+        image = "err0r500/chaos-container:0.1"
+      }
+
+      env {
+        FREQ = "50"
       }
     }
   }
