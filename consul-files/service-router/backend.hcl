@@ -20,6 +20,10 @@ routes = [
     }
     destination {
       service = "echo1"
+      num_retries = 3
+      retry_on_status_codes = [500, 501]
+      request_timeout = "200ms"
+      retry_on_connect_failure = true
     }
   },
 ]

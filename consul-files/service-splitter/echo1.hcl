@@ -3,10 +3,10 @@ name = "echo1"
 
 splits = [
   {
-    weight         = 90
+    weight  = 90
   },
   {
-    weight         = 10
-    service_subset = "chaos"
+    weight  = 10
+    service = "chaos"
   },
 ]

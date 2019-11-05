@@ -40,15 +40,8 @@ job "ingress" {
       env {
         NAME = "ingress"
         LISTEN_ADDR = "0.0.0.0:${NOMAD_PORT_http}"
-        UPSTREAM_URIS = "http://127.0.0.1:12345/"
+        UPSTREAM_URIS = "http://127.0.0.1:12345"
         TRACING_ZIPKIN = "http://172.16.2.10:9411"
-        UPSTREAM_CALL = "true"
-        MESSAGE = "Hello World"
-        HTTP_CLIENT_KEEP_ALIVES = "false"
-        TIMING_50_PERCENTILE = "30ms"
-        TIMING_90_PERCENTILE = "60ms"
-        TIMING_99_PERCENTILE = "90ms"
-        TIMING_VARIANCE = 10
       }
     }
   }
