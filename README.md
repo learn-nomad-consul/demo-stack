@@ -7,6 +7,17 @@
 
 This project uses Ansible but __you don't need it on your host__ : it's installed on a VM by Vagrant and provisions everything from there.
 
+
+## tech stack 
+
+- Consul & Consul Connect (service discovery & service mesh)
+- Nomad (orchestration)
+- Jaeger (distributed tracing)
+- Prometheus (monitoring)
+- Loki (logs)
+- Grafana (visualization)
+
+
 ## Run
 
 ```
