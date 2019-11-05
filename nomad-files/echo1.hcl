@@ -7,6 +7,7 @@ job "echo1" {
   }
 
   group "echo1" {
+    count = 2
     network {
       mode = "bridge"
     }
@@ -17,6 +18,12 @@ job "echo1" {
 
       connect {
         sidecar_service {}
+        sidecar_task {
+          resources {
+            cpu    = 100
+            memory = 10
+          }
+        }
       }
     }
 
@@ -24,7 +31,7 @@ job "echo1" {
       driver = "docker"
       resources {
         cpu    = 100
-        memory = 100
+        memory = 10
       }
 
       config {

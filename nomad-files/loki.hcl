@@ -21,9 +21,6 @@ job "loki" {
       config {
         image = "grafana/loki:v0.4.0"
         network_mode = "host"
-        # volumes = [
-        #   "custom/promtail.yml:/etc/promtail/config.yml"
-        # ]
       }
 
       resources {

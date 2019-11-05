@@ -7,6 +7,8 @@ job "ingress" {
   }
 
   group "ingress" {
+    count = 2
+
     network {
       mode = "bridge"
       port "http" {

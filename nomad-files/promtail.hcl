@@ -58,7 +58,7 @@ scrape_configs:
       - localhost
      labels:
       job: varlogs
-      host: yourhost
+      host: {{ env "meta.instance_group" }}
       __path__: /var/lib/docker/containers/*/*.log
 EOF
         destination = "custom/promtail.yml"
