@@ -2,7 +2,7 @@
 
 job_name_from_file='\.\/(.*)\.hcl'
 
-if [ $1 == "all" ]
+if [[ $1 == "all" ]]
 then
     echo "applying all"
     for file in ./*
