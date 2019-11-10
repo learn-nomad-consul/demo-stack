@@ -23,3 +23,9 @@
   roles:
     - nomad-install
 
+- name: terraform install
+  hosts: ci
+  become: yes
+  roles:
+    - terraform-install
+

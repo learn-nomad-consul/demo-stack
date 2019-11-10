@@ -1,0 +1,4 @@
+---
+
+- name: install terraform
+  import_tasks: terraform_install.yml

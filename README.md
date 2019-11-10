@@ -30,11 +30,14 @@ That's it ! Have a cup of coffee while looking at Vagrant upping the VMs and set
 
 ```
 vagrant ssh ci
-cd ~/consul-files/
-./apply.sh
 
-cd ~/nomad-files/
-./apply.sh all
+cd ~/consul/
+terraform init
+terraform apply
+
+cd ~/nomad/
+terraform init
+terraform apply
 ```
 
 ### Check

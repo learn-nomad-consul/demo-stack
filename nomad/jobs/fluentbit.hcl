@@ -1,4 +1,4 @@
-job "fluentd" {
+job "fluentbit" {
   datacenters = ["dc1"]
   type = "system"
 
@@ -8,12 +8,12 @@ job "fluentd" {
     operator  = "!="
   }
 
-  group "fluentd" {
+  group "fluentbit" {
     network {
       mode = "host"
     }
 
-    task "fluentd" {
+    task "fluentbit" {
       driver = "docker"
 
       resources {

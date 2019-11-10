@@ -1,0 +1,20 @@
+---
+
+- name: install unzip 
+  become: yes
+  package:
+    name: unzip
+    state: present
+
+- name: get terraform archive
+  become: no
+  get_url:
+    url: https://releases.hashicorp.com/terraform/0.12.13/terraform_0.12.13_linux_amd64.zip
+    dest: ~/terraform.zip
+
+- name: extract terraform
+  become: yes
+  shell: unzip ./terraform.zip -d /usr/local/bin/ && chmod +x /usr/local/bin/terraform && rm ./*.zip
+  args:
+    creates: /usr/local/bin/terraform
+
