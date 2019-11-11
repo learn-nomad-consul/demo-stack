@@ -10,7 +10,7 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 
 ## tech stack 
 
-- Consul & Consul Connect (service discovery & service mesh)
+- Consul & Consul Connect (service discovery, internal DNS & service mesh)
 - Nomad (orchestration)
 - Jaeger (distributed tracing)
 - Prometheus (monitoring)
