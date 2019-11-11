@@ -44,7 +44,3 @@
     src: ./daemon.json 
     dest: /etc/docker/daemon.json
     mode: '0400'
-
-- name: install loki plugin 
-  become: yes
-  shell: docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions

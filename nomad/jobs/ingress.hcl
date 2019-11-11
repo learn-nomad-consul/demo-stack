@@ -1,5 +1,6 @@
 job "ingress" {
   datacenters = ["dc1"]
+  type = "service"
 
   constraint {
     attribute = "${meta.instance_group}"

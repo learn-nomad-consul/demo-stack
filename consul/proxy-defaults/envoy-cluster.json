@@ -1,0 +1,26 @@
+{
+  "name": "zipkin",
+  "type": "STRICT_DNS",
+  "connect_timeout": "3.000s",
+  "lb_policy": "ROUND_ROBIN",
+  "load_assignment": {
+    "cluster_name": "zipkin",
+    "endpoints": [
+      {
+        "lb_endpoints": [
+          {
+            "endpoint": {
+              "address": {
+                "socket_address": {
+                  "address": "172.16.2.10",
+                  "port_value": 9411,
+                  "protocol": "TCP"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

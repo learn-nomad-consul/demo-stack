@@ -16,7 +16,7 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 - Prometheus (monitoring)
 - Fluent-bit & Loki (logs)
 - Grafana (visualization)
-
+- Terraform (manage Nomad & Consul in a fully declarative way)
 
 ## Run
 
