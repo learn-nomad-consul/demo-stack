@@ -1,0 +1,38 @@
+---
+
+- name: install dnsmaq 
+  become: yes
+  package:
+    name: dnsmasq
+    state: present
+
+- name: add dns for consul domain
+  become: yes
+  copy:
+    src: 10-consul 
+    dest: /etc/dnsmasq.d/10-consul
+    owner: root
+    mode: '0644'
+
+- name: start dnsmasq service
+  become: yes
+  systemd:
+    state: restarted
+    enabled: yes
+    name: dnsmasq
+    daemon_reload: yes
+
+- name: add dnsmasq to systemd-resolved
+  become: yes
+  lineinfile:
+    path: /etc/systemd/resolved.conf
+    line: 'DNS=172.17.0.1'
+
+- name: start systemd-resolved service
+  become: yes
+  systemd:
+    state: restarted
+    enabled: yes
+    name: systemd-resolved
+    daemon_reload: yes
+

@@ -5,6 +5,7 @@ advertise_addr = "{{ hostvars[inventory_hostname].ansible_host }}"
 retry_join = ["{{ hostvars['ctrlplane'].ansible_host }}"]
 addresses {
     http  = "127.0.0.1 172.17.0.1"
+    dns  = "127.0.0.1 172.17.0.1"
     grpc  = "127.0.0.1 172.17.0.1"
 }
 ports {

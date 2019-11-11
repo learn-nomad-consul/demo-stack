@@ -43,12 +43,11 @@ job "ingress" {
           }
         }
       }
-
       env {
         NAME = "ingress"
         LISTEN_ADDR = "0.0.0.0:${NOMAD_PORT_http}"
         UPSTREAM_URIS = "http://127.0.0.1:12345"
-        TRACING_ZIPKIN = "http://172.16.2.10:9411"
+        TRACING_ZIPKIN = "http://jaeger-zipkin.service.dc1.consul:9411"
       }
     }
   }

@@ -51,3 +51,12 @@ resource "consul_config_entry" "statsd" {
     Protocol    = "http"
   })
 }
+
+resource "consul_config_entry" "jaeger-zipkin" {
+  name = "jaeger-zipkin"
+  kind = "service-defaults"
+
+  config_json = jsonencode({
+    Protocol    = "http"
+  })
+}

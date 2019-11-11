@@ -11,6 +11,11 @@ job "jaeger" {
       mode = "host"
     }
 
+    service {
+      name = "jaeger-zipkin"
+      port = 9411
+    }
+
     task "server" {
       driver = "docker"
 

@@ -34,3 +34,7 @@ resource "nomad_job" "prometheus" {
 resource "nomad_job" "jaeger" {
   jobspec = file("${path.module}/jobs/jaeger.hcl")
 }
+
+# resource "nomad_job" "zipkin_forwarder" {
+#   jobspec = file("${path.module}/jobs/zipkin_forwarder.hcl")
+# }
