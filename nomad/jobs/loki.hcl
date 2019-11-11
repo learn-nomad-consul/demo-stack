@@ -15,6 +15,11 @@ job "loki" {
       }
     }
 
+    service {
+      name = loki
+      port = "web"
+    }
+
     task "loki" {
       driver = "docker"
 

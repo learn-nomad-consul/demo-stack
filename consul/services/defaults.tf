@@ -60,3 +60,12 @@ resource "consul_config_entry" "jaeger-zipkin" {
     Protocol    = "http"
   })
 }
+
+resource "consul_config_entry" "loki" {
+  name = "loki"
+  kind = "service-defaults"
+
+  config_json = jsonencode({
+    Protocol    = "http"
+  })
+}

@@ -39,7 +39,7 @@ job "fluentbit" {
 [Output]
     Name loki
     Match *
-    Url http://172.16.2.10:3100/loki/api/v1/push
+    Url http://loki.service.dc1.consul:3100/loki/api/v1/push
     BatchWait 1
     BatchSize 1001024
     Labels {group="{{ env "meta.instance_group" }}"}
