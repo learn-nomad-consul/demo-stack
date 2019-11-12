@@ -16,7 +16,7 @@ job "loki" {
     }
 
     service {
-      name = loki
+      name = "loki"
       port = "web"
     }
 
