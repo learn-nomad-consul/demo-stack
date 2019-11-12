@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
     c.vm.hostname = "monitoring"
     c.vm.network "private_network", ip: "172.16.2.10"
     c.vm.synced_folder ".", "/vagrant", disabled: true
+    c.vm.synced_folder "./grafana/", "/home/vagrant/grafana"
   end
 
   config.vm.define "ci" do |c|

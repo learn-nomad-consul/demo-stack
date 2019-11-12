@@ -76,10 +76,17 @@ EOF
         memory = 100
       }
 
+      user = "1000"
+
       config {
         image = "grafana/grafana:6.4.3"
         network_mode = "host"
+        volumes = [
+          "/home/vagrant/grafana/etc:/etc/grafana",
+          "/home/vagrant/grafana/lib:/var/lib/grafana",
+        ]
       }
+
       env {
         GF_SERVER_HTTP_ADDR = "127.0.0.1"
         GF_SERVER_HTTP_PORT = "${NOMAD_HOST_PORT_graf_web}"
