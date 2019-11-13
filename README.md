@@ -1,5 +1,8 @@
 # Nomad & Consul Connect demo stack
 
+![archi](./archi_demo_stack.png)
+
+
 ## Requirements
 
 - virtualbox
