@@ -1,0 +1,27 @@
+{
+    "builders": [
+        {
+            "communicator": "ssh",
+            "source_path": "hashicorp/bionic64",
+            "provider": "virtualbox",
+            "add_force": true,
+            "type": "vagrant"
+        }
+    ],
+    "provisioners": [
+        {
+            "playbook_file": "./ansible/main.yml",
+            "type": "ansible"
+        }
+    ],
+    "post-processors": [
+    [
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "err0r500/bionic64-consul-nomad-tf",
+        "version_description": "desc",
+        "version": "0.1"
+      }
+    ]
+  ]
+}

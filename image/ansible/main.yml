@@ -1,30 +1,27 @@
 ---
 
 - name: install docker on clients
-  hosts:
-    all 
+  hosts: all 
   become: yes
   roles:
     - docker-install
 
 - name: consul install
-  hosts:
-    all
+  hosts: all
   order: sorted
   become: yes
   roles:
     - consul-install
 
 - name: nomad install
-  hosts:
-    all
+  hosts: all
   order: sorted
   become: yes
   roles:
     - nomad-install
 
 - name: terraform install
-  hosts: ci
+  hosts: all
   become: yes
   roles:
     - terraform-install

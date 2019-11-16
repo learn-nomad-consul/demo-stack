@@ -12,10 +12,13 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 
 
 ## tech stack 
+- [ Packer ](https://www.packer.io/) : bake a custom image with everything _instance agnostic_ installed and setup
+- [Cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html) : set everything _instance specific_
+- [Vagrant](https://www.vagrantup.com/) : start the VMs
 
-- Consul & Consul Connect (service discovery, internal DNS & service mesh)
-- Nomad (orchestration)
-- Jaeger (distributed tracing)
+- [ Consul & Consul Connect ](https://www.consul.io/) : service discovery, internal DNS & service mesh
+- [ Nomad ](https://www.nomadproject.io/) : orchestration
+- [ Jaeger ](https://www.jaegertracing.io/) : distributed tracing
 - Prometheus (monitoring)
 - Fluent-bit & Loki (logs)
 - Grafana (visualization)
@@ -23,7 +26,18 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 
 ## Run
 
+### Very first time 
+We'll bake the custom image that will be used for every VM. 
+
+It uses the "hashicorp/bionic64" (it's an ubuntu) and installs on it 
+- consul
+- cni-plugins (used by consul connect)
+- nomad
+- terraform
+
+
 ```
+vagrant plugin install vagrant-cloudinit
 vagrant up
 ```
 

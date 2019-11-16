@@ -1,5 +1,11 @@
 ---
 
+- name: install cloud-init 
+  become: yes
+  package:
+    name: cloud-init
+    state: present
+
 - name: install dnsmaq 
   become: yes
   package:

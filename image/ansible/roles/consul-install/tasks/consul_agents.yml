@@ -1,0 +1,24 @@
+---
+
+- name: consul service definition 
+  become: yes
+  copy:
+    src: consul.service
+    dest: /etc/systemd/system/consul.service
+    mode: '0640'
+    owner: vagrant
+    
+- name: ensure /etc/consul.d/ directory exists
+  become: yes
+  file:
+    path: /etc/consul.d/
+    state: directory
+    owner: vagrant
+
+- name: enable consul service
+  become: yes
+  systemd:
+    state: restarted
+    enabled: yes
+    name: consul
+    daemon_reload: yes
