@@ -56,4 +56,13 @@ Vagrant.configure("2") do |config|
     c.vm.synced_folder "./consul/", "/home/vagrant/consul"
     c.vm.provision :cloud_init, user_data: "./cloud-init/ci.yml"
   end
+
+  config.vm.define "nfs" do |c|
+    c.vm.hostname = "nfs"
+    c.vm.network "private_network", ip: "172.16.2.12"
+    c.vm.synced_folder ".", "/vagrant", disabled: true
+    c.vm.synced_folder "./nomad/", "/home/vagrant/nomad"
+    c.vm.synced_folder "./consul/", "/home/vagrant/consul"
+    c.vm.provision :cloud_init, user_data: "./cloud-init/nfs.yml"
+  end 
 end

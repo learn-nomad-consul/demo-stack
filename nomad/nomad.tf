@@ -7,6 +7,10 @@ resource "nomad_job" "statsd" {
   jobspec = file("${path.module}/jobs/statsd.hcl")
 }
 
+resource "nomad_job" "nfs" {
+  jobspec = file("${path.module}/jobs/nfs.hcl")
+}
+
 resource "nomad_job" "ingress" {
   jobspec = file("${path.module}/jobs/ingress.hcl")
 }
