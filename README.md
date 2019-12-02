@@ -26,15 +26,13 @@ This project uses Ansible but __you don't need it on your host__ : it's installe
 
 ## Run
 
-### Very first time 
-We'll bake the custom image that will be used for every VM. 
+We'll use the same custom baked image for every VM. 
 
-It uses the "hashicorp/bionic64" (it's an ubuntu) and installs on it 
+It's based on the "hashicorp/bionic64" (it's an ubuntu) image and installs on it 
 - consul
 - cni-plugins (used by consul connect)
 - nomad
 - terraform
-
 
 ```
 vagrant plugin install vagrant-cloudinit
@@ -58,6 +56,8 @@ terraform apply
 ```
 
 ### Check
+
+NB : the ssh password is `vagrant`
 
 __Consul__ : 
 
